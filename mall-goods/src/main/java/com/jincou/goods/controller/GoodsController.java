@@ -6,6 +6,8 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
 
+import javax.servlet.http.HttpServletRequest;
+
 
 /**
  * 商品相关接口
@@ -21,9 +23,19 @@ public class GoodsController {
     private GoodsService goodsService;
 
     @RequestMapping("findByGoodsId")
-    public Object findByGoodsId(int goodsId) {
+    public Object findByGoodsId(int goodsId, HttpServletRequest request) {
         Goods goods = goodsService.findById(goodsId);
+
+        //打印是哪个节点被请求
+        System.out.println("当前服务器名称: " + request.getServerName()+";当前集群节点端口号: "+ request.getServerPort());
         return goods;
+    }
+
+    @RequestMapping("findClusterName")
+    public Object findClusterName( HttpServletRequest request) {
+        //获取是哪个节点被请求
+        String clusterName = "当前服务器名称: " + request.getServerName()+";当前集群节点端口号: "+ request.getServerPort();
+        return clusterName;
     }
 
 }
