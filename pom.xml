@@ -12,6 +12,7 @@
         <module>mall-goods</module>
         <module>mall-user</module>
         <module>mall-order</module>
+        <module>mall-gatway</module>
     </modules>
 
     <!-- 一般来说父级项目的packaging都为pom，packaging默认类型jar类型-->

@@ -1,0 +1,27 @@
+server:
+  port: 8001
+
+spring:
+  application:
+    name: api-gateway
+
+  cloud:
+    gateway:
+      routes: #数组形式
+        - id: mall-goods  #路由唯一标识
+          uri: http://127.0.0.1:6001  #想要转发到的地址
+          order: 1 #优先级，数字越小优先级越高
+          predicates: #断言 配置哪个路径才转发
+            - Path=/mall-goods/**
+            #- Before=2020-09-11T01:01:01.000+08:00  # 在这个时间点之后不能访问
+            #- Query=source  #一定携带这个参数
+          filters: #过滤器，请求在传递过程中通过过滤器修改
+            - StripPrefix=1  #去掉第一层前缀
+
+        - id: mall-order  #订单微服务
+          uri: http://127.0.0.1:6001
+          order: 1
+          predicates:
+            - Path=/mall-order/**
+          filters:
+            - StripPrefix=1
