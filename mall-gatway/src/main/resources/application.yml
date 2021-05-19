@@ -3,7 +3,7 @@ server:
 
 spring:
   application:
-    name: api-gateway
+    name: mall-gateway
 
   cloud:
     gateway:
@@ -19,7 +19,7 @@ spring:
             - StripPrefix=1  #去掉第一层前缀
 
         - id: mall-order  #订单微服务
-          uri: http://127.0.0.1:6001
+          uri: http://127.0.0.1:7001
           order: 1
           predicates:
             - Path=/mall-order/**

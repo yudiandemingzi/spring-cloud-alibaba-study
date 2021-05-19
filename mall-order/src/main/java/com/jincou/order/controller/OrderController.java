@@ -2,6 +2,8 @@ package com.jincou.order.controller;
 
 import com.jincou.common.domain.Goods;
 import com.jincou.order.service.GoodsService;
+import org.apache.logging.log4j.LogManager;
+import org.apache.logging.log4j.Logger;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
@@ -23,6 +25,7 @@ public class OrderController {
     @Autowired
     private  GoodsService goodsService;
 
+    private Logger log = LogManager.getLogger(OrderController.class);
     /**
      * 通过RestTemplate请求mall-goods服务
      */
@@ -37,6 +40,7 @@ public class OrderController {
      */
     @RequestMapping("getGoodsByFeign")
     public Object getGoodsByFeign(int goodsId) {
+        log.info("订单服务");
         Goods goods = goodsService.findById(goodsId);
         return goods;
     }

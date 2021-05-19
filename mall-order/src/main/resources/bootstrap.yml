@@ -7,6 +7,8 @@ spring:
       config:
         server-addr: 127.0.0.1:8848 #Nacos配置中心地址
         file-extension: yaml #文件拓展格式
+      discovery:
+        server-addr: 127.0.0.1:8848
 
   profiles:
     active: dev
