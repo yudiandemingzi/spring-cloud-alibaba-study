@@ -2,6 +2,13 @@ spring:
   application:
     name: mall-order
 
+  zipkin:
+    base-url: http://127.0.0.1:9411/ #zipkin地址
+    discovery-client-enabled: false  #不用开启服务发现
+  sleuth:
+    sampler:
+      probability: 1.0 #采样百分比
+
   cloud:
     nacos:
       config:
